@@ -1,6 +1,9 @@
 package com.aqsatech.chatsapp;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.Bundle;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,17 +25,32 @@ import java.util.concurrent.TimeUnit;
 
 public class OTPActivity extends AppCompatActivity {
 
+
     ActivityOTPBinding binding;
     FirebaseAuth auth;
 
     String verificationId;
+
+    ProgressDialog dialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityOTPBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        dialog = new ProgressDialog(this);
+        dialog.setMessage("Sending OTP...");
+        dialog.setCancelable(false);
+        dialog.show();
+
         auth = FirebaseAuth.getInstance();
+
+        getSupportActionBar().hide();
+
+
+
         String phoneNumber = getIntent().getStringExtra("phoneNumber");
 
         binding.phonelbl.setText("Verify " + phoneNumber);
@@ -40,7 +58,7 @@ public class OTPActivity extends AppCompatActivity {
         PhoneAuthOptions options = PhoneAuthOptions.newBuilder(auth)
                 .setPhoneNumber(phoneNumber)
                 .setTimeout(60L, TimeUnit.SECONDS)
-                .setActivity(this)
+                .setActivity(OTPActivity.this)
                 .setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
                     @Override
                     public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
@@ -55,11 +73,17 @@ public class OTPActivity extends AppCompatActivity {
                     @Override
                     public void onCodeSent(@NonNull String verifyId, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
                         super.onCodeSent(verifyId, forceResendingToken);
-                        verificationId=verifyId;
-                    }
+                        dialog.dismiss();
+                        verificationId = verifyId;
 
+                        InputMethodManager imm =(InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+                        binding.otpView.requestFocus();
+                    }
                 }).build();
+
         PhoneAuthProvider.verifyPhoneNumber(options);
+
         binding.otpView.setOtpCompletionListener(new OnOtpCompletionListener() {
             @Override
             public void onOtpCompleted(String otp) {
@@ -69,7 +93,7 @@ public class OTPActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()) {
-                            Toast.makeText(OTPActivity.this, "Login", Toast.LENGTH_SHORT).show();
+
                         } else {
                             Toast.makeText(OTPActivity.this, "Failed.", Toast.LENGTH_SHORT).show();
                         }
@@ -77,5 +101,10 @@ public class OTPActivity extends AppCompatActivity {
                 });
             }
         });
+
+
+
+
+
     }
 }

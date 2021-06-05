@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.aqsatech.chatsapp.databinding.ActivityPhoneNumberBinding;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class PhoneNumberActivity extends AppCompatActivity {
 
@@ -18,12 +19,16 @@ public class PhoneNumberActivity extends AppCompatActivity {
         binding=ActivityPhoneNumberBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        getSupportActionBar().hide();
+
+        binding.phoneBoxET.requestFocus();
+
         binding.continueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(PhoneNumberActivity.this,OTPActivity.class);
-                i.putExtra("phoneNumber",binding.phoneBoxET.getText().toString());
-                startActivity(i);
+                Intent intent = new Intent(PhoneNumberActivity.this, OTPActivity.class);
+                intent.putExtra("phoneNumber", binding.phoneBoxET.getText().toString());
+                startActivity(intent);
             }
         });
     }
