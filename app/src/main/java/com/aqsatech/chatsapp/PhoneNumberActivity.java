@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.aqsatech.chatsapp.databinding.ActivityPhoneNumberBinding;
-import com.google.firebase.auth.FirebaseAuth;
 
 public class PhoneNumberActivity extends AppCompatActivity {
 

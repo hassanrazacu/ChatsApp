@@ -4,25 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f9f9f9"
-    tools:context=".PhoneNumberActivity">
+    tools:context=".ProfileActivity">
 
-    <ImageView
+
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/avatar"
+        android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/mobile_auth" />
+        />
 
     <TextView
         android:id="@+id/profileInfoTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Verify Your Phone Number"
+        android:text="Profile Info"
         android:textColor="@color/black"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -36,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:gravity="center"
-        android:text="ChatsApp will send an SMS to verify your phone number."
+        android:text="Please Set Your Name and an Optional Profile Image."
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="@+id/profileInfoTV"
         app:layout_constraintStart_toStartOf="@+id/profileInfoTV"
@@ -66,7 +67,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/textbox_outlining"
                 android:ems="10"
-                android:hint="Type Your Phone Number"
+                android:hint="Your Name"
                 android:inputType="textPersonName"
                 android:padding="15dp" />
 
@@ -76,9 +77,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:backgroundTint="#4CAF50"
-                android:text="Continue" />
+                android:text="Setup Profile" />
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

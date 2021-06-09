@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ChatsApp</string>
+    <string name="didn_t_get_otp_resend">didn\ t get otp? <b>Resend</b></string>
 </resources>
