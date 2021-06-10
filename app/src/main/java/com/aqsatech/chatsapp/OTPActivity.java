@@ -2,6 +2,7 @@ package com.aqsatech.chatsapp;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -161,6 +162,9 @@ public class OTPActivity extends AppCompatActivity {
                 {
                     dialog.dismiss();
                     Toast.makeText(OTPActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                    Intent intent=new Intent(OTPActivity.this,ProfileActivity.class);
+                    startActivity(intent);
+                    finishAffinity();
                 }
                 else
                 {

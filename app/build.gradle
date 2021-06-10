@@ -44,6 +44,10 @@ dependencies {
     implementation 'com.github.mukeshsolanki:android-otpview-pinview:2.1.2'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
+    //Image Picker
+    implementation 'com.github.Drjacky:ImagePicker:2.1.11'
+
+
     implementation platform('com.google.firebase:firebase-bom:28.1.0')
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-auth'
