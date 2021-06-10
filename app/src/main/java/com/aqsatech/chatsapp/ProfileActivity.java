@@ -71,7 +71,14 @@ public class ProfileActivity extends AppCompatActivity {
                     =registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), (ActivityResult result) -> {
                         if(result.getResultCode()==RESULT_OK)
                         {
-                            Uri uri=result.getData().getData();
+                            if(result!=null)
+                            {
+                                if(result.getData()!=null)
+                                {
+                                    Uri uri=result.getData().getData();
+                                    binding.profileImage.setImageURI(uri);
+                                }
+                            }
                         }
                         else if(result.getResultCode() == ImagePicker.RESULT_ERROR)
                         {
